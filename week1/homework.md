@@ -8,15 +8,14 @@ Create a PR to add your homework to the respective week folder like you are used
 
 ## Homework exercises for Week #1
 
-For this assignment, you need to validate some assignments yourself, and create markdown with corresponding CLI commands for the others. You can find a markdown cheat sheet [here](https://www.markdownguide.org/cheat-sheet/).
+For theese assignments, you need to add CLI commands and/or results to the markdown file found here (link to markdown file). You can find a markdown cheat sheet [here](https://www.markdownguide.org/cheat-sheet/), but the formatting needed is already exemplified in the file.
 
-1. Setup and configure your credentials.
-2. Figure out how the commands to list S3 buckets. How many are prefixed with hyf in the us-east region?
-3. What are the core services we are going to use in this course?
-4. Name some of the main benefits of having serverless infrastructure.
-5. Name some of the main benefits of ot having serverless infrastructure.
+You will need to have setup your credentials to be able to see solve the assignments (see guide here).
+
+1. Write the CLI command to list S3 buckets and a link to the corresponding documentation page. How many buckets are prefixed with hyf in the us-east region?
+2. Navigate into the UI and login. Then, search for S3 in the search bar, and navigate into the bucket called `products-bucket`. What's the name of the file?
 
 ### Additional Exercises:
 
-6. Try to list 3 benefits you find useful by using the cloud?
-7. TBA
+3. We can use the [presign](https://docs.aws.amazon.com/cli/latest/reference/s3/presign.html) command to create temporary URLs for files in a private bucket. Create a presigned url for **1 hour** for the file you found in assignment 2.
+4. The command you discovered in assignment 1 has optional arguments for making it more **human-readable** and **summarizing**. Write the final command with those arguments, and the total size of the bucket.
