@@ -8,18 +8,25 @@ Create a PR to add your homework to the respective week folder like you are used
 
 ## Homework exercises for Week #2
 
-We will begin to improve our application gradually by each week. If you find yourself behind, you can find the solution on a seperate branch for this repo, e.g `week1/solutions`.
+We will begin to improve our application gradually by each week. The starting point for every exercise is found under `materials/homework`.
 
-1. Navigate into the branch `week1/homework`. You will find new components and react hooks to tampering with state.
-2. You will find a hook for adding things to the cart, and an overview of current items inside the cart. Create functionality for deleting items from the cart.
-3. Create the functionality for displaying notifications. Integrate this into the cart hook, such that a notification shown when adding/removing items from the cart.
-4. Sync your changes to s3.
+Part I:
+
+1. Navigate into the folder `week1/homework` where you will find a predifined web app. Install dependencies with `npm install` and build the app with `npm build`.
+2. Inside the file `useSubscription` implement the function called `calculateSum`, such that it returns a the price sum of all selected subscriptions.
+3. Inside the component `notification`, implement markup for displaying notifications. Feel free to adjust the hook `useNotification` in whatever way you find interesting.
+
+Part II:
+
+For this part, you will need to finish the markup for assignments.
+
+4. Sync your changes to s3 and write down your s3 bucket url.
 5. Right now, the website does not support https. Explain which other AWS service needs to be integrated in order to achieve this.
-6. What are the pricing for S3?
+6. Explain briefly the pricing model for S3?
+7. How much would your current website approxiamately cost to host for one year in the current setup?
+8. The file `week2/assignments/products.json` needs to be uploaded Inside the bucket `hyf-serverless-course-week-2`. Upload the file through the CLI and write down the commands needed.
 
 ### Additional Exercises:
 
-You will also need to create a markdown file for answering the following exercises.
-
 6. Which events can be triggered by S3 events. Are those events also supported by Azure?
-7. What can be done to reduce the pricing for S3?
+7. What can be done to reduce the pricing for S3 when hosting a large number of files?

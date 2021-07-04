@@ -55,5 +55,10 @@ The sam CLI has alot of utility, for all of Lambdas usecases (api, queue, custom
 
 ### 3. Class Assignments
 
-1.
-2.
+1. Create a new lambda through SAM with the node environment.
+2. Copy the contents from `week3/materials/index.js` into your lambda and run it locally.
+3. Change the cron expression into running daily at 08:00 AM, i.e `0 8 * * *`.
+4. Deploy the lambda, but name it `hyf-class-week2-{your-first-name}`.
+5. Navigate into cloudformation and find your stack. Write down your ARN id of the stack.
+6. Navigate into your lambda on AWS and trigger it manually.
+7. Find the SAM command to delete your stack and then delete it.
