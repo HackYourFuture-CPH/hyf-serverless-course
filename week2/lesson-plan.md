@@ -10,7 +10,7 @@ Exercises from week 1 / configured credentials for AWS.
 
 Cloud storage is a useful and fundemental offering from cloud vendors with great flexibility for creating serverless applications (among other things). We can use it to store files/objects in given "buckets". This includes serving a static website.
 
-Cloud storage can obviously also be used to store large files (there is no limit to storage, so we have infinite scalability). We can likewise easily move, transform and procces these files by other jobs/services.
+Cloud storage can also be used to store large files (there is no limit to storage, so we have infinite scalability). We can likewise easily move, transform and procces these files by other jobs/services.
 
 S3 can likewise trigger events on file actions, e.g on file upload or file deletion. Files can also contain specific security rules for access.
 
@@ -37,6 +37,6 @@ Finally, we enable web hosting
 ### 3. Class Assignments
 
 1. Perform the above steps on your own website. Don't touch any react code yet, but just upload the contents.
-2. Navigate into the UI and find your bucket. What is the url, and what are is the bucket policy?
+2. Navigate into the UI and find your bucket. What is the url, and what is the bucket policy?
 3. Make a change to your website and reflect the changes to your bucket.
 4. Write a few reasons on why cloud storage is serverless.

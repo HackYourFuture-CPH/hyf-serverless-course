@@ -21,13 +21,13 @@ Every class will also have a **very short** (10 minutes and no slides) study gro
 
 ## Setup, deployment and credentials
 
-You will need to prepare an environment with a terminal and workable IDE. We reccomend VS Code or similar. We will be using the terminal quite a bit. Operation system does not matter.
+You will need to prepare an environment with a terminal and workable IDE. We reccomend VS Code or similar. We will be using the terminal quite a bit, and operation system does not matter.
 
-You will be given a set of credentials to interact with AWS and Azure. These should be kept secret and never be checked into version control (e.g Github).
+You will be given a set of credentials to interact with AWS. These should be kept secret and never be checked into version control (e.g Github). You will likewise be given an account you can use to log into AWS's console website.
 
 The given credentials does not allow you to do everything, and restricts you to only use certain resources and perform certain actions.
 
-You can find the guides for setting up your cloud provider here (link needed).
+You can find the guides for setting up the AWS CLI [here](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html]).
 
 ## Serverless application overview
 

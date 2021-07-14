@@ -8,9 +8,9 @@ Create a PR to add your homework to the respective week folder like you are used
 
 ## Homework exercises for Week #1
 
-For theese assignments, you need to add CLI commands and/or results to the markdown file found here (link to markdown file). You can find a markdown cheat sheet [here](https://www.markdownguide.org/cheat-sheet/), but the formatting needed is already exemplified in the file.
+For theese assignments, you need to add CLI commands and/or results to the markdown file found [here](https://github.com/HackYourFuture-CPH/hyf-serverless-course/blob/main/week1/materials/homework/assignments.md).
 
-You will need to have setup your credentials to be able to see solve the assignments (see guide here).
+You will need to have setup the AWS CLI credentials to be able to see solve the assignments (see guide [here](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html])).
 
 1. Write the CLI command to list S3 buckets and a link to the corresponding documentation page. How many buckets are prefixed with hyf in the us-east region?
 2. Navigate into the UI and login. Then, search for S3 in the search bar, and navigate into the bucket called `products-bucket`. What's the name of the file?
