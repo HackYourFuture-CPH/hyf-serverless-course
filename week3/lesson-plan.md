@@ -29,31 +29,76 @@ Cloud functions are small codebases recieving an incoming event/request and outp
 
 Our first journey will be going into [cron](https://en.wikipedia.org/wiki/Cron) based lambdas on AWS. We will use [SAM](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html) to run and develop on them locally, and deploy it on AWS to run the code on a daily bases.
 
+The sam CLI has alot of utility, for all of Lambdas usecases (api, queue, custom events and more), but we will start out simple by creating CRON based tasks (meaning time based events).
+
 After sam has been installed, we will initiate a new project with:
 
 `sam init`
 
-This will create a node boilerplate that we will work on from here. You should note, that a lambda has an entrypoint from which our code will start to run, and _usually_ provides an output depending on it's functionality.
+These are the arguments you need to provide:
 
-We can run a lambda function with sam by running
+1. Chose `AWS Quick Start Templates` as template source,
+2. Choose `Zip` as package type.
+3. Choose `nodejs14.x` as runtime.
+4. Type 'hyf'-{your-credentials}-cron-lambda' as the name, e.g `hyf-pds-cron-lambda`.
+5. Choose `Quick Start: Scheduled Events` as an app template.
 
-`sam run local`
+This will create a node boilerplate that we can run with sam by running:
 
-This will execute the function and, if you have valid credentials, it can also interface with our cloud provider. We will need to rerun the lambda with sam to see our changes having an effect - i.e there is no hot reloading.
+`sam local invoke ScheduledEventLogger`.
 
-Once we are happy with our lambda, we can deploy it to the cloud through sam with two operations, the [package](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-package.html) and [deploy](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-deploy.html) command.
+### 4. Deploying lambdas with SAM
 
-First, we create our package command to bundle all our code
+To deploy a lambda to AWS through SAM, we will need to create what is called a (cloudformation stack)[https://aws.amazon.com/cloudformation/]. Think of stacks as a recipe of cloud resources and their configuration.
 
-`sam package --args...`
+First, we build the lambda running `sam build`. Next we can run `sam deploy --guided`. The arguments will need to be as follows:
 
-then, we deploy it to AWS by using a technology called cloudformation. We will deal with cloudformation later on.
+1. Type 'hyf'-{your-credentials}-cron-lambda' as the stack name, e.g `hyf-pds-cron-lambda`.
+2. Choose default region (us-east-1)
+3. Confirm IAM role creation
 
-`sam deploy --args...`
+Your lambda is now deployed and you can find it inside both the cloudformation and lambda UI on the AWS console.
 
-The sam CLI has alot of utility, for all of Lambdas usecases (api, queue, custom events and more), but we will start out simple by creating CRON based tasks (meaning time based events).
+### 5. Cloudwatch
 
-### 3. Class Assignments
+This week, we will also begin to use the service called cloudwatch. Cloudwatch is flexible monitoring tool, which provides out of the box monitoring of key metrics for all of our infrastructure hosted on AWS. There is alot of utility in cloudwatch, but we will start off slowly by integrating it into our lambda.
+
+First off, to use it inside our lambda, we need to install the sdk to our lambda by running `npm install aws-sdk`.
+
+The general aws-sdk signature is usually first to define a client and payload. Then, create a request and execute it through the client. For Cloudwatch this looks like the following.
+
+```
+import { CloudWatchClient } from "@aws-sdk/client-cloudwatch";
+import { ListMetricsCommand } from "@aws-sdk/client-cloudwatch";
+
+const cloudwatchClient = new CloudWatchClient({ region: "us-east-1" });
+
+var params = {
+  Dimensions: [
+    {
+      Name: 'LogGroupName', /* required */
+    },
+  ],
+  MetricName: 'IncomingLogEvents',
+  Namespace: 'AWS/Logs'
+};
+
+let request = await cloudwatchClient.listMetrics(params);
+
+try {
+  const data = await cloudwatchClient.send(new ListMetricsCommand(params));
+  console.log("Success. Metrics:", JSON.stringify(data.Metrics));
+  return data;
+} catch (err) {
+  console.log("Error", err);
+}
+```
+
+Note that the signature and functionality is almost always the same as the AWS CLI, e.g the `list-metrics` requires the same parameters (command can be found [here](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/cloudwatch/list-metrics.html)).
+
+You can find more node.js examples [here](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/cloudwatch-examples.html)
+
+### 6. Class Assignments
 
 1. Create a new lambda through SAM with the node environment.
 2. Copy the contents from `week3/materials/index.js` into your lambda and run it locally.
