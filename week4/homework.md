@@ -8,7 +8,7 @@ Create a PR to add your homework to the respective week folder like you are used
 
 ## Homework exercises for Week #4
 
-This week, we will look into inventory management of our app. The ? company has made an agreement with an external provider to upload a file containing their inventory on a weekly basis. We only care about ?, and will scan for the current price.
+This week, we will look into inventory management of our app. The ? company has made an agreement with an external provider to upload a file containing their inventory on a weekly basis. We only care about "carrots" category ?, and will scan for the current price.
 
 Given the price is under 10$, we will then publish a notification.
 
