@@ -9,10 +9,9 @@ Create a PR to add your homework to the respective week folder like you are used
 ## Homework exercises for Week #3
 This weeks builds on top of your previous exercises, namely your new found web application for HYF subscriptions. We will extend the application by adding a simple cron task, and interfacing with S3 inside of our Lambda.
 
-Part I:
+## Part I:
 This part brings focus on creating lambdas through SAM. Your job will be to create and implement the relevant changes needed for a lambda deployment. 
 
-Quick recap: 
 To recap, two things is needed to deploy: 
 1. A zipped collection of your application files - i.e the files runned when the lambda executes
 2. A cloudformation template describing the lambda infrastructure - e.g the runtime, when to execute and other configuration. 
@@ -29,22 +28,37 @@ To begin with, we have been handed over a broken lambda and will need to fix it 
 
 (you should be familiar with package.json and the .js files. You can also find more information on the template.yml at ...)
 
-Someone has been commenting out lines by accident, making our lambda broken. Remove all comments across the files. 
+Someone has been commenting out lines by accident, making our lambda broken. Remove all comments across the files, and note down the values which was broken in our `assignments.md` found [here](https://github.com/HackYourFuture-CPH/hyf-serverless-course/blob/main/week3/materials/homework-cron-lambda/assignments.md]).
 
-(note create markdown file)
 2. What is the `type` value of our lambda in cloudformation (hint: it starts with `AWS::`). Link the documentation and full value for it. 
 3. Now with the template fixed, we can run our lambda. Still being at `materials/homework-cron-lambda` you can run the lamda locally with `sam local invoke ScheduledEventLogger`. Write down the rubbish string it currently produces, and then, make it return then **sane** string. 
-4. We will need to output the amount of requests going through our backend. This is done through a useful service called cloudwatch. Navigate into the (AWS console)[https://console.aws.amazon.com/] and find the cloudwatch service. Here, go to all metrics, and find the namespace called `API` and then the metric called `Count`.
+4. We will need to output the amount of requests going through our backend. This is done through a useful service called [cloudwatch](https://aws.amazon.com/cloudwatch/). Navigate into the [AWS console](https://console.aws.amazon.com) and find the cloudwatch service. Here, go to all metrics, and find the namespace called `ApiGateway`, then  `By Stage`. Plot the latency and take a screenshot (you will need to upload the image as part of your PR)
 
-(CREATE API)
+![Kiku](../images/cloudwatch_metrics.png)
 
-1. Create a new cron based lambda through the SAM environment with a Node environment.
-2. Install the AWS SDK to your project.
-3. We will need to output the amount of requests going through our backend. This is done through a useful service called cloudwatch. Navigate into cloudwatch and find the namespace called `API` and then the metric called `Count`. (TBA: Add the API)
 
-4. Find the relevant functions for interfacing with the cloudwatch through the SDK (you will have to look this up). This function takes a body that takes the following: `{}`.
+5. Next, we want to know the request `Count`.  What is the total count value for the last 12 months (see screenshot if you are stuck on how to get number visualized correctly)
 
-5. Deploy it with guided... TBA write down your ARN number. Browse into the cloudformation -> lambda ui and trigger it manually. 
+![Kiku](../images/cloudwatch_api_count.png)
+
+## Part II
+Now that we know are a bit more familiar with cloudwatch and running lambdas locally, we will automate the process of figuring out the daily counts inside of our lambda! 
+
+1. First, install the AWS SDK Cloudwatch sdk to our lambda with the following command:
+
+```npm install @aws-sdk/client-cloudwatch```
+
+Next, uncomment all the code related to the cloudwatch client inside the lambda. 
+
+3. We will now need to change the relevant parameters for the cloudwatch call. Figure out which values is correct for retrieving the count you found in Part I (docs can be found [here](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-metrics-and-dimensions.html)). 
+
+4. The sales department of Good Green Groceries wants even more metrics! Enhance your lambda to return all metrics for our API Gateway.
+
+5. DEPLOY ASSIGNMENT
+
+6. TRIGGER LAMBDA ASSIGNMENT
+
+7. FINAL CODE AND DEPLOY PROBLEM
 
 ### Additional Exercises:
 

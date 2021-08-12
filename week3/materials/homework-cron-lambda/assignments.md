@@ -12,8 +12,8 @@ value: `?`
 
 doc: `?`
 
-**Assignment 2:**
-filename: `?`
+**Assignment 3:**
+rubbish string: `?`
 
 ## Optional Assignments
 
