@@ -65,7 +65,7 @@ Next, uncomment all the code related to the cloudwatch client inside the lambda.
 
 Finally, navigate into the lambda UI - there are quite a few tabs, but the one we are looking to use is called **test**. You can trigger the code from here. Trigger the code, and take a screenshot of the success message and upload it as part of your PR.
 
-TODO: Add image
+![Kiku](../images/lambda_invoke_ui.png)
 
 6. The sales team is once again being annoying, and believe that your lambda is not working all the time. They need to be shown some kind of **monitoring** graph indicating that the lambda is indeed running successfully. Take a screenshot of this visual and upload it as part of your PR.
 

@@ -15,6 +15,9 @@ doc: `?`
 **Assignment 3:**
 rubbish string: `?`
 
+**Assignment 4:**
+total count: `?`
+
 ## Optional Assignments
 
 command: `?`
