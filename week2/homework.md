@@ -8,19 +8,25 @@ Create a PR to add your homework to the respective week folder like you are used
 
 ## Homework exercises for Week #2
 
-We will begin to improve our application gradually by each week. The starting point for every exercise is found under `materials/homework`.
+Meet Green Good Groceries - a newly founded company ready to transfer their small startup business to the cloud. Until now, they have only been physichal with a small but expensive website. 
+
+Green Good Groceries sells subscriptions on food boxes, but more plans to expand and improve are underway. Your job is to build their application using serverless, gradually each work. Luckily, Green Good Groceries have existing code, used in most exercises found under `materials/homework`.
 
 Part I:
 
-1. Navigate into the folder `week1/homework` where you will find a predifined web app. Install dependencies with `npm install` and build the app with `npm build`.
-2. Inside the file `useSubscription` implement the function called `calculateSum`, such that it returns a the price sum of all selected subscriptions.
+The first part is related to building the actual frontend website using React as the framework. Again, we start out simple but will improve it during the next couple of weeks.  
+
+1. Navigate into the folder `week2/homework` where you will find a predifined web app. Install dependencies with `npm install`.
+2. Inside the file `useProducts` implement the function called `calculateSum`, such that it returns a the price sum of all selected subscriptions.
 3. Inside the component `notification`, implement markup for displaying notifications. Feel free to adjust the hook `useNotification` in whatever way you find interesting.
 
 Part II:
 
-For this part, you will need to finish the markup for assignments.
+For this part, you will need to finish the markup for assignments found [here](https://github.com/HackYourFuture-CPH/hyf-serverless-course/blob/main/week2/materials/homework/assignments.md). You will also need to use the CLI to create/sync/upload your changes to the AWS. 
 
-4. Sync your changes to s3 and write down your s3 bucket url.
+You will then need to add the answers to `assignments.md` and upload it as part of your PR. 
+
+4. Create a bucket and sync the webapp application code to it (see this weeks [lesson plan](https://github.com/HackYourFuture-CPH/hyf-serverless-course/blob/main/week2/lesson-plan.md) if you are stuck)
 5. Right now, the website does not support https. Explain which other AWS service needs to be integrated in order to achieve this.
 6. Explain briefly the pricing model for S3?
 7. How much would your current website approxiamately cost to host for one year in the current setup?

@@ -34,8 +34,8 @@ let initialProducts = productsData.map((item) => {
   return { ...item, selected: false };
 });
 
-function useProducts(friendID) {
-  const [products, setProducts] = useState(initialProducts);
+function useProducts() {
+  const [products] = useState(initialProducts);
   const [cart, setCart] = useState([]);
 
   const addProduct = (product) => {
