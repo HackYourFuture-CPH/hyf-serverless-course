@@ -15,6 +15,7 @@ So far, we have seen the cron event, useful for scheduled jobs. But a lambda can
 Keep in mind, that events are not exclusive to cloud services, they exist in many frameworks and technologies outside of the cloud - e.g a MySql or Redis database can also emit events.
 
 Examples on events that is serverless could be:
+
 - A scheduled event (i.e a cron event)
 - A row is inserted/updated/deleted in a DynamoDB database.
 - A lambda is triggered when something enters SQS (a AWS queue service).
@@ -41,9 +42,57 @@ We will deploy this almost the same way as before, except we will need to specif
 
 First, as before, we build with the command `sam build`. Then we can use the `sam deploy --guided` command to deploy our stack to the cloud similar to last week. From here on, each time a new subscription has been created, the lambda will be invoked.
 
-The final deploy command will then look like `sam deploy -- ...`.
+### 3. Simple Notification Service
 
-### 3. Class assignments
+Another way to trigger lambdas is to subscribe them to notification. Each time a notification is created, the lambda is invoked. This can be achieved in node with the following code:
 
-1. Create a lambda similar to the above and verify it runs. 
-2. Add 
+```
+// code example taken from SO: https://stackoverflow.com/questions/31484868/can-you-publish-a-message-to-an-sns-topic-using-an-aws-lambda-function-backed-by
+
+var AWS = require("aws-sdk");
+
+exports.handler = function(event, context) {
+    var eventText = JSON.stringify(event, null, 2);
+    console.log("Received event:", eventText);
+    var sns = new AWS.SNS();
+    var params = {
+        Message: eventText,
+        Subject: "Test SNS From Lambda",
+        TopicArn: "arn:aws:sns:us-west-2:123456789012:test-topic1"
+    };
+    sns.publish(params, context.done);
+};
+
+```
+
+If you look at the Stack overflow post, you will notice the sentence: `You just need to make sure you give the IAM role executing the function access to publish to your topic`. This is a very important aspect of developing cloud infrastructure, where we strive for [Principle pf least privelege ](https://en.wikipedia.org/wiki/Principle_of_least_privilege#:~:text=In%20information%20security%2C%20computer%20science,a%20user%2C%20or%20a%20program%2C).
+
+In terms of the lambda above, this means two things:
+
+1. We need to make sure we are allowed to throw the specific notification
+2. We need to give our lambda access to throw notifications in general
+
+These security permission and trust relationships between our AWS infrastructure can be specified in many ways (the UI, CLI, SDK and other ways). We will embrace the [infrastrcture as code](https://en.wikipedia.org/wiki/Infrastructure_as_code) principle, i.e we will specifiy it in our cloudformation template. Here is an example of template with a DyanmoDB policy:
+
+```
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31' b
+Resources:
+  MyFunction:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs8.10
+      CodeUri: 's3://my-bucket/function.zip'
+      Policies:
+      # Give DynamoDB Full Access to your Lambda Function
+      - AmazonDynamoDBFullAccess
+```
+
+See more policy example [here](https://aws.amazon.com/premiumsupport/knowledge-center/lambda-sam-template-permissions/)
+
+### 4. Class assignments
+
+1. Create a lambda similar to the above and verify it runs, i.e a lambda triggered by S3 input events.
+2. Create a SNS in the UI. The topic name should be `hyf-{your-credentials}-sns-topic`. Make SNS publishing part of the application code.
+3. Create a new lambda once again, but this time with the SNS template. Then, extend the SNS to contain a string as part of the event body. Make the lambda output this body to the console.

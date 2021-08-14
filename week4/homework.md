@@ -8,6 +8,8 @@ Create a PR to add your homework to the respective week folder like you are used
 
 ## Homework exercises for Week #4
 
+The Good Green Groceries sales team has once again shown their brilliant creativity by allowing all kind of vendors upload their inventory lists to our S3 buckets. They now want you to scan the uploaded files for specific categories and items within a specific price range.
+
 This week, we will look into inventory management of our app. The ? company has made an agreement with an external provider to upload a file containing their inventory on a weekly basis. We only care about "carrots" category ?, and will scan for the current price.
 
 Given the price is under 10$, we will then publish a notification.
