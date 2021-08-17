@@ -8,7 +8,7 @@ Create a PR to add your homework to the respective week folder like you are used
 
 ## Homework exercises for Week #3
 
-This weeks builds on top of your previous exercises, namely your new found web application for GoodGreenGroceries food box subscriptions. The Sales team of Good Green Groceries are eager to find out how much traffic the newly launched website is recieving. They are very concerned about the scalability of this "S3 hosting" you have reccomended, and we will therefore give them the daily numbers of the traffic recieved on our website to ease their mind.
+This weeks builds on top of your previous exercises, namely your new found web application for GoodGreenGroceries food box subscriptions. The Sales team of Good Green Groceries are eager to find out how much traffic the newly launched website is recieving. They are very concerned about the scalability of this "S3 hosting" you have reccomended, and we will therefore give them the daily numbers of the traffic recieved on our website to ease their mind. 
 
 We do this by extending our application with a simple cron task - executed on a lambda.
 
@@ -30,8 +30,6 @@ To begin with, we have been handed over a broken lambda and will need to fix it 
 - package.json
 - template.yml
 ```
-
-(you should be familiar with package.json and the .js files. You can also find more information on the template.yml at ...)
 
 Someone has been commenting out lines by accident, making our lambda broken. Remove all comments across the files, and note down the values which was broken in our `assignments.md` found [here](https://github.com/HackYourFuture-CPH/hyf-serverless-course/blob/main/week3/materials/homework-cron-lambda/assignments.md]).
 
