@@ -18,6 +18,8 @@ Figure out and write down the price per month of storing 51TB on S3.
 
 Price: `?`
 
+Total size of website: `?`
+
 **Assignment 7:**
 
 Write down the main cost factors for S3
