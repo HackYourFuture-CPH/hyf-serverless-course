@@ -27,12 +27,9 @@ You will be given a set of credentials to interact with AWS. These should be kep
 
 The given credentials does not allow you to do everything, and restricts you to only use certain resources and perform certain actions.
 
-You can find the guides for setting up the AWS CLI [here](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html]).
+You can find the guides for setting up the AWS CLI [in the homework assignment](https://github.com/HackYourFuture-CPH/hyf-serverless-course/blob/main/week1/homework.md]).
 
-## Serverless application overview
-
-During the course, we will create a subscription service for ?. Each week, our exercises will add new and improved functionality to the service.
-
-The subscription service will be called `?`, done by the fictional organization HackYourPresent.
-
-Core service TBA
+## Class assignments
+- create study groups 
+- create presentation groups
+- get everybody started on the [homework assignments](https://github.com/HackYourFuture-CPH/hyf-serverless-course/blob/main/week1/homework.md). 
