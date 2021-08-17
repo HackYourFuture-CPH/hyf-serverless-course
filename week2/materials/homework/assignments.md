@@ -14,20 +14,20 @@ service name: `?`
 
 **Assignment 6:**
 
-Explain briefly the pricing model for S3?
+Figure out and write down the price per month of storing 51TB on S3.
 
-pricing description: `?`
+Price: `?`
 
 **Assignment 7:**
 
-How much would your current website approxiamately cost to host for one year in the current setup?
+Write down the main cost factors for S3
 
-price in $: `?$`
-
-total size : `? KiB`
+brief description: `?`
 
 **Assignment 8:**
 
-The file `week2/assignments/products.json` needs to be uploaded Inside the bucket `hyf-serverless-course-week-2`. Upload the file through the CLI and write down the commands needed.
+The file `week2/assignments/products.json` needs to be uploaded Inside the bucket `hyf-serverless-course-week-2`. Upload the file through the CLI and write down the command needed.
 
-docs:
+docs: 
+
+command:
