@@ -1,13 +1,8 @@
-# Week 1 : Topic #3
+# Week 3: Compute
 
 ## Pre-requisites:
-
-Compute
-Lambdas/Functions overview
-Cron/Timebased functions
-Assignments
-
-Something about installing the software or prior knowlegde about a specific topic
+- Last weeks assignments
+- This weeks preperation
 
 ## Lesson Plan:
 
@@ -21,17 +16,17 @@ Theese restrictions makes a very powerful and simple interface for us to create 
 
 Lambdas and functions is the cornerstone of serverless compute. Please note that lambdas and functions are the same, they just have different names in our cloud providers.
 
-You can think if a function/lambda as a cloud function, running a given codebase on a given programming environment. .
+You can think of a function/lambda as a cloud function, running a given codebase on a given programming environment.
 
-Cloud functions are small codebases recieving an incoming event/request and outputting a response. They can be used for creating an API, queues, time based jobs, strean handling and custom event handling for other services such as S3.
+Cloud functions are small codebases recieving an incoming event/request and outputting a response. They can be used for creating an API, queues, time based jobs, stream handling and custom event handling for other services such as S3. Since we are working on AWS, we will refer to cloud functions as **lambdas** from here on and onwards.
 
 ### 3. Cron/Timebased functions
 
 Our first journey will be going into [cron](https://en.wikipedia.org/wiki/Cron) based lambdas on AWS. We will use [SAM](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html) to run and develop on them locally, and deploy it on AWS to run the code on a daily bases.
 
-The sam CLI has alot of utility, for all of Lambdas usecases (api, queue, custom events and more), but we will start out simple by creating CRON based tasks (meaning time based events).
+The SAM CLI has alot of utility, for all of Lambdas usecases (api, queue, custom events and more), but we will start out simple by creating CRON based tasks.
 
-After sam has been installed, we will initiate a new project with:
+After SAM has been installed, we will initiate a new project with:
 
 `sam init`
 
@@ -47,9 +42,9 @@ This will create a node boilerplate that we can run with sam by running:
 
 `sam local invoke ScheduledEventLogger`.
 
-### 4. Deploying lambdas with SAM
+### 4. Deploying lambdas with SAM to AWS
 
-To deploy a lambda to AWS through SAM, we will need to create what is called a (cloudformation stack)[https://aws.amazon.com/cloudformation/]. Think of stacks as a recipe of cloud resources and their configuration.
+To deploy a lambda to AWS through SAM, we will need to create what is called a (cloudformation stack)[https://aws.amazon.com/cloudformation/]. Think of stacks as a recipe of cloud resources and their configuration for a given IT solution/system/environment.
 
 First, we build the lambda running `sam build`. Next we can run `sam deploy --guided`. The arguments will need to be as follows:
 
@@ -61,11 +56,17 @@ Your lambda is now deployed and you can find it inside both the cloudformation a
 
 ### 5. Cloudwatch
 
-This week, we will also begin to use the service called cloudwatch. Cloudwatch is flexible monitoring tool, which provides out of the box monitoring of key metrics for all of our infrastructure hosted on AWS. There is alot of utility in cloudwatch, but we will start off slowly by integrating it into our lambda.
+This week, we will also begin to use the service called [cloudwatch](https://aws.amazon.com/cloudwatch/features/). Cloudwatch is flexible monitoring tool, which provides out of the box monitoring of key metrics for all of our infrastructure hosted on AWS. There is alot of utility in cloudwatch, but we will start off slowly by integrating it into our lambda.
 
-First off, to use it inside our lambda, we need to install the sdk to our lambda by running `npm install aws-sdk`.
+First off, to use it inside our lambda, we need to install the cloudwatch sdk to our lambda by running `npm install @aws-sdk/client-cloudwatch`.
 
-The general aws-sdk signature is usually first to define a client and payload. Then, create a request and execute it through the client. For Cloudwatch this looks like the following.
+The general aws-sdk signature is usually done with three following steps: 
+
+1. define a client
+2. define parameters/payload. 
+3. call the relevant command with the payload through the client.
+ 
+For Cloudwatch this looks like the following.
 
 ```
 import { CloudWatchClient } from "@aws-sdk/client-cloudwatch";
@@ -100,10 +101,10 @@ You can find more node.js examples [here](https://docs.aws.amazon.com/sdk-for-ja
 
 ### 6. Class Assignments
 
-1. Create a new lambda through SAM with the node environment.
+1. Create a new lambda through SAM with the node environment with the `sam init` command.
 2. Copy the contents from `week3/materials/index.js` into your lambda and run it locally.
 3. Change the cron expression into running daily at 08:00 AM, i.e `0 8 * * *`.
 4. Deploy the lambda, but name it `hyf-class-week2-{your-first-name}`.
 5. Navigate into cloudformation and find your stack. Write down your ARN id of the stack.
 6. Navigate into your lambda on AWS and trigger it manually.
-7. Find the SAM command to delete your stack and then delete it.
+7. Find another classmate and make him delete your stack through the UI.
