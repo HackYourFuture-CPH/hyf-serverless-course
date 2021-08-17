@@ -28,11 +28,12 @@ You will then need to add the answers to `assignments.md` and upload it as part 
 
 4. Create a bucket and sync the webapp application code to it (see this weeks [lesson plan](https://github.com/HackYourFuture-CPH/hyf-serverless-course/blob/main/week2/lesson-plan.md) if you are stuck)
 5. Right now, the website does not support https. Explain which other AWS service needs to be integrated in order to achieve this.
-6. Explain briefly the pricing model for S3?
-7. How much would your current website approxiamately cost to host for one year in the current setup?
-8. The file `week2/assignments/products.json` needs to be uploaded Inside the bucket `hyf-serverless-course-week-2`. Upload the file through the CLI and write down the commands needed.
+6. Figure out and write down the price per month of storing 51TB on S3?
+7. Write down the main cost factors for S3.
+8. The file `week2/assignments/products.json` needs to be uploaded Inside the bucket `hyf-serverless-course-week-2`. Upload the file (but **not** by using the sync command!) through the CLI and write down the commands needed.
+9. Write down a brief use case on when S3 could be used for a data engineering assignment
 
 ### Additional Exercises:
 
-6. Which events can be triggered by S3 events. Are those events also supported by Azure?
-7. What can be done to reduce the pricing for S3 when hosting a large number of files?
+10. What can be done to reduce the pricing for S3 when hosting a large number of files?
+11. There are many security features built into S3. Find your favourite feature, documentation for it, and explain briefly why.
