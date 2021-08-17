@@ -7,7 +7,7 @@ Open this template repository https://github.com/HackYourFuture-CPH/masterclass-
 Create a PR to add your homework to the respective week folder like you are used to do in the web development course, and if you don't remember how to do hand in homework using Pull Requests, please check here https://github.com/HackYourFuture-CPH/JavaScript/blob/master/javascript1/week1/homework.md
 
 ## Homework exercises for Week #1
-Meet Green Good Groceries - a newly founded company ready to transfer their small startup business to the cloud. Until now, they have only been physichal with a small but expensive website. Your mission is to help them transform and digitilize them in a cheap, flexible and solid manner - in which you reccomended serverless!
+**Meet Green Good Groceries - a newly founded company ready to transfer their small startup business to the cloud. Until now, they have only been physichal with a small but expensive website. Your mission is to help them transform and digitilize them in a cheap, flexible and solid manner - in which you reccomended serverless!**
 
 For theese assignments, you need to add CLI commands and/or results to the markdown file found [here](https://github.com/HackYourFuture-CPH/hyf-serverless-course/blob/main/week1/materials/homework/assignments.md).
 
