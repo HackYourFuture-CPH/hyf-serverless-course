@@ -33,7 +33,7 @@ Windows users should follow this [guide](https://docs.aws.amazon.com/cli/latest/
 2. With your AWS CLI installed, we need to setup our AWS CLI credentials. You will recieve a access and secret key in class/slack to do this. Then, run `aws configure` and accept all defaults except for the access and secret keys. 
 
 3. Once credentials have been set up, use the [aws s3 ls](https://docs.aws.amazon.com/cli/latest/reference/s3/ls.html) command to list S3 buckets. How many buckets do we currently have on our AWS account? 
-4. Navigate into the UI and login (credentials will once again be given in class/slack). Then, search for S3 in the search bar, and navigate into the bucket called `products-bucket`. What's the name of the file inside the bucket?
+4. Navigate into the [AWS UI Console](https://console.aws.amazon.com/console/home#) and login (credentials will once again be given in class/slack). Then, search for S3 in the search bar, and navigate into the bucket called `products-bucket`. What's the name of the file inside the bucket?
 
 ### Additional Exercises:
 
