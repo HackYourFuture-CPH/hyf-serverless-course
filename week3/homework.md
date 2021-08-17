@@ -8,14 +8,16 @@ Create a PR to add your homework to the respective week folder like you are used
 
 ## Homework exercises for Week #3
 
-This weeks builds on top of your previous exercises, namely your new found web application for HYF subscriptions. The Sales team of Good Green Groceries are eager to find out how much traffic the newly launched website is recieving. They are very concerned about the scalability of this "S3 hosting", and we will therefore give them the daily numbers of the traffic recieved on our website to ease their mind.
+This weeks builds on top of your previous exercises, namely your new found web application for GoodGreenGroceries food box subscriptions. The Sales team of Good Green Groceries are eager to find out how much traffic the newly launched website is recieving. They are very concerned about the scalability of this "S3 hosting" you have reccomended, and we will therefore give them the daily numbers of the traffic recieved on our website to ease their mind.
 
-We do this by extending our application with a simple cron task - triggered on a lambda.
+We do this by extending our application with a simple cron task - executed on a lambda.
 
-To recap, two things is needed to create and deploy:
+To recap from class, two things is needed to create and deploy:
 
 1. A zipped collection of your application files - i.e the files runned when the lambda executes
 2. A cloudformation template describing the lambda infrastructure - e.g the runtime, when to execute and other configuration.
+
+(note: The `SAM CLI` helps us zip our code and interface with the AWS service cloudformation)
 
 To begin with, we have been handed over a broken lambda and will need to fix it ourselves. Once we have fixed it, we will then add functionality for telling us how many visitors we have on our website through AWS Cloudwatch (we will go over cloudwatch in Part II).
 
@@ -70,5 +72,4 @@ Finally, navigate into the lambda UI - there are quite a few tabs, but the one w
 6. The sales team is once again being annoying, and believe that your lambda is not working all the time. They need to be shown some kind of **monitoring** graph indicating that the lambda is indeed running successfully. Take a screenshot of this visual and upload it as part of your PR.
 
 ### Additional Exercises:
-
-TBA:
+TBA
