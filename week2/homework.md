@@ -28,9 +28,9 @@ You will then need to add the answers to `assignments.md` and upload it as part 
 
 4. Create a bucket and sync the webapp application code to it (see this weeks [lesson plan](https://github.com/HackYourFuture-CPH/hyf-serverless-course/blob/main/week2/lesson-plan.md) if you are stuck)
 5. Right now, the website does not support https. Explain which other AWS service needs to be integrated in order to achieve this.
-6. Figure out and write down the price per month of storing 51TB on S3?
+6. Figure out and write down the price per month of storing 51TB on S3? Write down the total size of your website bucket as well.
 7. Write down the main cost factors for S3.
-8. The file `week2/assignments/products.json` needs to be uploaded Inside the bucket `hyf-serverless-course-week-2`. Upload the file (but **not** by using the sync command!) through the CLI and write down the commands needed.
+8. The file `week2/assignments/products.json` needs to be uploaded Inside the bucket `hyf-serverless-course-week-2`. Add a new product to it, rename the file so it is called `products-{your-credentials}.json` and upload the file (but **not** by using the sync command!) through the CLI and write down the command needed. 
 9. Write down a brief use case on when S3 could be used for a data engineering assignment
 
 ### Additional Exercises:
