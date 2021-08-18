@@ -8,14 +8,12 @@ Create a PR to add your homework to the respective week folder like you are used
 
 ## Homework exercises for Week #4
 
-The Good Green Groceries sales team has once again shown their brilliant creativity by allowing all kind of vendors upload their inventory lists to our S3 buckets. They now want you to scan the uploaded files for specific categories and items within a specific price range.
+The Good Green Groceries sales team has once again shown their brilliant creativity by allowing all kind of vendors upload their inventory lists to our S3 buckets. They now want you to scan the uploaded files for specific categories and items within a specific price range. They are also tired of logging into AWS (where they are creating a great deal of havoc!) so they asked if we could kindly post the results in Slack.
 
-This week, we will look into inventory management of our app. The ? company has made an agreement with an external provider to upload a file containing their inventory on a weekly basis. We only care about "carrots" category ?, and will scan for the current price.
-
-Given the price is under 10$, we will then publish a notification.
+Specifically, Good Green Groceries has made an agreement with external providers to upload files containing their inventory on a weekly basis in a public bucket. We only care about the **vegetables** and **fruits** categories, and will scan for the current prices. Given the price is under 10$, we will then publish a notification.
 
 1. Create a new lambda, and copy the events from `week4/materials/assignments/events/` into the root of your lambda.
-2. Install the SDK, and copy the contents of `week4/materials/assignments/index.js` into your index.js file.
+2. Install the S3 SDK, and copy the contents of `week4/materials/assignments/index.js` into your index.js file.
 3. Parse the event object, and find the S3 object id location. You will need to provide this in the next step.
 4. The boilerplate for `getInventoryFile` returns a list of objects. Find the object which has the name `??` and it's corresponding price.
 
