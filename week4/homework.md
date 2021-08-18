@@ -12,13 +12,10 @@ The Good Green Groceries sales team has once again shown their brilliant creativ
 
 Specifically, Good Green Groceries has made an agreement with external providers to upload files containing their inventory on a weekly basis in a public bucket. We only care about the **vegetables** and **fruits** categories, and will scan for the current prices. Given the price is under 10$, we will then publish a notification.
 
-1. Create a new lambda, and copy the events from `week4/materials/assignments/events/` into the root of your lambda.
+1. Create a new lambda reacting to S3 Object creation events, and copy the event from `week4/materials/assignments/events/custom-upload-event.json` into the root of your lambda.
 2. Install the S3 SDK, and copy the contents of `week4/materials/assignments/index.js` into your index.js file.
-3. Parse the event object, and find the S3 object id location. You will need to provide this in the next step.
-4. The boilerplate for `getInventoryFile` returns a list of objects. Find the object which has the name `??` and it's corresponding price.
-
-### Additional Exercises:
-
-5. Publish a SNS with the topic `INVENTORY_??`. You will need to add additional IAM permissions (these can be found inside the `week4/materials/assignments/cloudformation.js`).
-6. Output the inventory list, but only for all items that contains `??`. What is the average price?
-7. Sometimes, our inventory partner uploads by accident, removes the file from S3, and then reuploads a new one. Create a new lambda that listens to a delete event, and then publish that to S3 (see `week4/materials/assignments/cloudformation.js`) for a boilerplate. 
+3. The code you have copied tries to download an S3 event file and parse it as a CSV, based on the event parameters. 
+4. Implement the functionality for listing all groceries and fruit categories with the cost of under 10.0$. Also find the maximum and minimum prices of all the valid candidates you just found.
+5. Once done, we need to send this to a webhook of the slack channel `?`. The webhook is a post endpoint, with the parameters `{???}`. We will leave it to you to decide how to perform the http requests.
+6. Make your lambda publish a SNS with the topic `INVENTORY_SCAN_COMPLETE`, and the objectID as the message body. You will need to add additional IAM permissions (these can be found inside the `week4/materials/assignments/cloudformation.js`).
+7. Create a new lambda which listens to the SNS topic `INVENTORY_SCAN_COMPLETE`. Extract the body, and then make the lambda delete the given file. To test this, please use the event under `week4/materials/assignments/events/custom-delete-event.json` for local development.
