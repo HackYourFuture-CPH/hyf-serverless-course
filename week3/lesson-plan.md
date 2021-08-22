@@ -1,6 +1,7 @@
 # Week 3: Compute
 
 ## Pre-requisites:
+
 - Last weeks assignments
 - This weeks preperation
 
@@ -60,17 +61,17 @@ This week, we will also begin to use the service called [cloudwatch](https://aws
 
 First off, to use it inside our lambda, we need to install the cloudwatch sdk to our lambda by running `npm install @aws-sdk/client-cloudwatch`.
 
-The general aws-sdk signature is usually done with three following steps: 
+The general aws-sdk signature is usually done with three following steps:
 
 1. define a client
-2. define parameters/payload. 
+2. define parameters/payload.
 3. call the relevant command with the payload through the client.
- 
+
 For Cloudwatch this looks like the following.
 
 ```
-import { CloudWatchClient } from "@aws-sdk/client-cloudwatch";
-import { ListMetricsCommand } from "@aws-sdk/client-cloudwatch";
+const { CloudWatchClient } = require("@aws-sdk/client-cloudwatch");
+const { GetMetricDataCommand } = require("@aws-sdk/client-cloudwatch");
 
 const cloudwatchClient = new CloudWatchClient({ region: "us-east-1" });
 
@@ -83,8 +84,6 @@ var params = {
   MetricName: 'IncomingLogEvents',
   Namespace: 'AWS/Logs'
 };
-
-let request = await cloudwatchClient.listMetrics(params);
 
 try {
   const data = await cloudwatchClient.send(new ListMetricsCommand(params));
@@ -101,10 +100,10 @@ You can find more node.js examples [here](https://docs.aws.amazon.com/sdk-for-ja
 
 ### 6. Class Assignments
 
-1. Create a new lambda through SAM with the node environment with the `sam init` command.
-2. Copy the contents from `week3/materials/index.js` into your lambda and run it locally.
+1. Create a new scheduled lambda through SAM with the node environment with the `sam init` command.
+2. Copy the contents from `week3/materials/index.js` into your lambda, install the cloudwatch client with `npm install @aws-sdk/client-cloudwatch`, and run it locally `sam local invoke` (remember to be in the right folder).
 3. Change the cron expression into running daily at 08:00 AM, i.e `0 8 * * *`.
 4. Deploy the lambda, but name it `hyf-class-week2-{your-first-name}`.
 5. Navigate into cloudformation and find your stack. Write down your ARN id of the stack.
-6. Navigate into your lambda on AWS and trigger it manually.
-7. Find another classmate and make him delete your stack through the UI.
+6. Navigate into your lambda on AWS and trigger it manually (you do this by creating a test event followed by a click on the "test" button).
+7. Find another classmate and make him delete your cloudformation stack through the UI.

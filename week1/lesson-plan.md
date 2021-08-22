@@ -21,7 +21,7 @@ Every class will also have a **very short** (10 minutes and no slides) study gro
 
 ## Setup, deployment and credentials
 
-You will need to prepare an environment with a terminal and workable IDE. We reccomend VS Code or similar. We will be using the terminal quite a bit, and operation system does not matter.
+You will need to prepare an environment with a terminal and workable IDE. We recommend VS Code or similar. We will be using the terminal quite a bit, and operation system does not matter.
 
 You will be given a set of credentials to interact with AWS. These should be kept secret and never be checked into version control (e.g Github). You will likewise be given an account you can use to log into AWS's console website.
 
@@ -30,6 +30,7 @@ The given credentials does not allow you to do everything, and restricts you to 
 You can find the guides for setting up the AWS CLI [in the homework assignment](https://github.com/HackYourFuture-CPH/hyf-serverless-course/blob/main/week1/homework.md]).
 
 ## Class assignments
-- create study groups 
+
+- create study groups
 - create presentation groups
-- get everybody started on the [homework assignments](https://github.com/HackYourFuture-CPH/hyf-serverless-course/blob/main/week1/homework.md). 
+- get everybody started on the [homework assignments](https://github.com/HackYourFuture-CPH/hyf-serverless-course/blob/main/week1/homework.md).
