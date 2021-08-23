@@ -8,7 +8,7 @@ Create a PR to add your homework to the respective week folder like you are used
 
 ## Homework exercises for Week #3
 
-This weeks builds on top of your previous exercises, namely your new found web application for GoodGreenGroceries food box subscriptions. The Sales team of Good Green Groceries are eager to find out how much traffic the newly launched website is recieving. They are very concerned about the scalability of this "S3 hosting" you have reccomended, and we will therefore give them the daily numbers of the traffic recieved on our website to ease their mind. 
+This weeks builds on top of your previous exercises, namely your new found web application for GoodGreenGroceries food box subscriptions. The Sales team of Good Green Groceries are eager to find out how much traffic the newly launched website is recieving. They are very concerned about the scalability of this "S3 hosting" you have recommended, and we will therefore give them the daily numbers of the traffic recieved on our website to ease their mind.
 
 We do this by extending our application with a simple cron task - executed on a lambda.
 
@@ -34,8 +34,8 @@ To begin with, we have been handed over a broken lambda and will need to fix it 
 Someone has been commenting out lines by accident, making our lambda broken. Remove all comments across the files, and note down the values which was broken in our `assignments.md` found [here](https://github.com/HackYourFuture-CPH/hyf-serverless-course/blob/main/week3/materials/homework-cron-lambda/assignments.md]).
 
 2. What is the `type` value of our lambda in cloudformation (hint: it starts with `AWS::`). Link the documentation and full value for it.
-3. Now with the template fixed, we can run our lambda. Still being at `materials/homework-cron-lambda` you can run the lamda locally with `sam local invoke ScheduledEventLogger`. Write down the rubbish string it currently produces, and then, make it return then **sane** string.
-4. We will need to output the amount of requests going through our backend. This is done through a useful service called [cloudwatch](https://aws.amazon.com/cloudwatch/). Navigate into the [AWS console](https://console.aws.amazon.com) and find the cloudwatch service. Here, go to all metrics, and find the namespace called `ApiGateway`, then `By Stage`. Plot the latency and take a screenshot (you will need to upload the image as part of your PR)
+3. Now with the template fixed, we can run our lambda. Still being at `materials/homework-cron-lambda` you can run the lamda locally with `sam local invoke`. Write down the rubbish string it currently produces, and then, make it return then **sane** string.
+4. We will need to output the amount of requests going through our backend. This is done through a useful service called [cloudwatch](https://aws.amazon.com/cloudwatch/). Navigate into the [AWS console](https://console.aws.amazon.com) and find the cloudwatch service. Here, go to all metrics, and find the namespace called `ApiGateway`, then `By Stage`. Plot the latency and take a screenshot (you will need to upload the image as part of your PR) for the api called **good-green-groceries-api**.
 
 ![Kiku](../images/cloudwatch_metrics.png)
 
@@ -55,19 +55,24 @@ Next, uncomment all the code related to the cloudwatch client inside the lambda.
 
 3. We will now need to change the relevant parameters for the cloudwatch call. Figure out which values is correct for retrieving the count you found in Part I (docs can be found [here](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-metrics-and-dimensions.html)).
 
-4. The sales department of Good Green Groceries wants even more metrics! Enhance your lambda to return all metrics for our API Gateway.
+4. The sales department of Good Green Groceries wants even more metrics! Enhance your lambda to return all metrics with the `ListMetricsCommand` for our API Gateway (see examples [here](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/cloudwatch-examples-getting-metrics.html)). Make the lambda only output all avaliable names of the metrics in the following structure:
 
-5. We now need to deploy, validate and trigger our lambda. To deploy we can use the `sam deploy --guided` command. The arguments will need to be as follows:
+```
+{
+   "command": "API_ANALYZER",
+   "values": ["Latency", "4XX", ...],
+   "date": "2021-20-01
+}
+```
 
-   1. Type 'hyf'-{your-credentials}-cron-lambda' as the stack name, e.g `hyf-pds-cron-lambda`.
+5. We now need to deploy, validate and trigger our lambda. To deploy we can use the `sam deploy --guided` command. Theese arguments will need to be as follows (feel free to choose the others yourself):
+
+   1. Type 'hyf'-{your-credentials}-homework-cron-lambda' as the stack name, e.g `hyf-pds-cron-homework-lambda`.
    2. Choose default region (us-east-1)
    3. Confirm IAM role creation
 
-Finally, navigate into the lambda UI - there are quite a few tabs, but the one we are looking to use is called **test**. You can trigger the code from here. Trigger the code, and take a screenshot of the success message and upload it as part of your PR.
+Finally, navigate into the lambda UI - there are quite a few tabs, but the one we are looking to use is called **test**. You can trigger the code from here by creating a test event and then trigger it with that particular event. Take a screenshot of the success message and upload it as part of your PR.
 
 ![Kiku](../images/lambda_invoke_ui.png)
 
-6. The sales team is once again being annoying, and believe that your lambda is not working all the time. They need to be shown some kind of **monitoring** graph indicating that the lambda is indeed running successfully. Take a screenshot of this visual and upload it as part of your PR.
-
-### Additional Exercises:
-TBA
+6. The sales team is once again being annoying, and believe that your lambda is not working all the time. They need to be shown some kind of **monitoring** graph indicating that the lambda is indeed running successfully. Take a screenshot of this visual and upload it as part of your PR. You can do it through the lambda console UI or cloudwatch UI.
