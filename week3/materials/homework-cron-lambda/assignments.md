@@ -1,6 +1,6 @@
 #### Example asignment
 
-command: `lambda list-functions`
+command: `aws lambda list-functions`
 
 doc: `https://docs.aws.amazon.com/cli/latest/reference/lambda/list-functions.html`
 
@@ -17,12 +17,3 @@ rubbish string: `?`
 
 **Assignment 4:**
 total count: `?`
-
-## Optional Assignments
-
-command: `?`
-
-url: `?`
-
-**Assignment 3:**
-**Assignment 4:**
