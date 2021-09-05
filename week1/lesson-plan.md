@@ -27,7 +27,7 @@ You will be given a set of credentials to interact with AWS. These should be kep
 
 The given credentials does not allow you to do everything, and restricts you to only use certain resources and perform certain actions.
 
-You can find the guides for setting up the AWS CLI [in the homework assignment](https://github.com/HackYourFuture-CPH/hyf-serverless-course/blob/main/week1/homework.md]).
+You can find the guides for setting up the AWS CLI [in the homework assignment](https://github.com/HackYourFuture-CPH/hyf-serverless-course/blob/main/week1/homework.md).
 
 ## Class assignments
 
