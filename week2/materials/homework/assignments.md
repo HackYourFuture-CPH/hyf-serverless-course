@@ -30,25 +30,23 @@ brief description: `?`
 
 The file `week2/assignments/products.json` needs to be uploaded Inside the bucket `hyf-serverless-course-week-2`. Upload the file through the CLI and write down the command needed.
 
-docs: 
+docs:
 
 **Assignment 9:**
-Write down a brief use case on when S3 could be used for a data engineering assignment: 
+Write down a brief use case on when S3 could be used for a data engineering assignment:
 
 use case: `?`
 
-command:
-
-## Optional assignments: 
+## Optional assignments:
 
 **Assignment 10:**
 
 What can be done to reduce the pricing for S3 when hosting a large number of files?
 
-brief description: `?` 
+brief description: `?`
 
 **Assignment 11:**
 
 There are many security features built into S3. Find your favourite feature, documentation for it, and explain briefly why.
 
-brief description of favourite security feature: `?` 
+brief description of favourite security feature: `?`

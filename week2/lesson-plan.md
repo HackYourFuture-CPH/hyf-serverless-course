@@ -8,11 +8,11 @@ Exercises from week 1 / configured credentials for AWS.
 
 ### 1. Storage overview
 
-Cloud storage is a useful and fundemental offering from cloud vendors with great flexibility for creating serverless applications (among other things). We can use it to store files/objects in given "buckets". This includes serving a static website.
+Cloud storage is a useful and fundemental offering from cloud vendors with great flexibility for serverless storage. We can use it to store files/objects in given "buckets". This includes serving a static website.
 
-Cloud storage can also be used to store large files (there is no limit to storage, so we have infinite scalability). We can likewise move, transform and procces these files by other jobs/services for our data jobs.
+Cloud storage can also be used to store, move, transform and process large files by other jobs/services for our data jobs, also known as an [ETL Pipeline](https://www.snowflake.com/guides/etl-pipeline#:~:text=An%20ETL%20pipeline%20is%20the,and%20move%20it%20to%20another.).
 
-S3 can likewise trigger events on file actions, e.g on file upload or file deletion (as we will see in week4 4). Files can also contain specific security rules for access.
+S3 can likewise trigger events on file actions, e.g on file upload or file deletion (as we will see in week4). Files and buckets can also contain security rules for access which means we can tailor custom access for a great deal of use cases where security is important.
 
 ### 2. Static web hosting
 
@@ -38,7 +38,7 @@ Finally, we enable web hosting with the [website command](https://docs.aws.amazo
 
 1. Perform the above steps on your own website. Don't touch any react code yet, but just upload the contents.
 2. Navigate into the UI and find your bucket. What is the url, and what is the bucket policy?
-3. Make a change to your website and reflect the changes to your bucket.
-4. Find someone inclass and make them visit and verify your website works. 
-5. Once they have verified the website, ask them to delete the bucket through the CLI. 
+3. Make a change to your website and reflect the changes to your bucket with the `sync` command.
+4. Find someone inclass and make them visit and verify your website works.
+5. Once they have verified the website, ask them to delete the bucket through the CLI.
 6. Write a few reasons down on why cloud storage is serverless (either alone of with a friend).
