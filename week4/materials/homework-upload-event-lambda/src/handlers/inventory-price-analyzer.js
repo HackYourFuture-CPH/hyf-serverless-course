@@ -12,7 +12,6 @@ exports.s3PriceAnalyzer = async (event) => {
       // implement code here
       let items = data.Body.toString().split("\n")
       items.forEach(item => console.log(item))
-
     }).catch(err => {
       console.error("Error calling S3 getObject:", err);
       return Promise.reject(err);

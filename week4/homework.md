@@ -2,19 +2,38 @@
 
 ## Overview
 
-The Good Green Groceries sales team has once again shown their brilliant creativity by allowing all kind of vendors upload their inventory lists to our S3 buckets. They now want you to scan the uploaded files for specific categories and items within a specific price range. They are also tired of logging into AWS (where they are creating a great deal of havoc!) so they asked if we could kindly post the results in Slack.
+The Good Green Groceries sales team has once again shown their brilliant creativity by allowing all kind of vendors upload their inventory lists to a public S3 bucket. They now want you to scan the uploaded files for specific categories and items within a specific price range. They are also tired of logging into AWS (where they are creating a great deal of havoc!) so they asked if we could kindly post the results in a specific Slack channel.
 
-Specifically, Good Green Groceries has made an agreement with external providers to upload files containing their inventory on a weekly basis in a public bucket. We only care about the **vegetables** and **fruits** categories, and will scan for the current prices. Given the price is under 10$, we will then publish a notification.
+We only care about the **vegetables** and **fruits** categories, with a price under 10$. Once the file is scanned, we will then publish a SNS.
 
-Also, your CTO has kindly asked you to not deploy the lambdas yet, as he is working on something secret that will make your changes automatically deployed in the future.
+In the end, you will have two lambdas. A lambda triggered by a file upload which publishes a SNS on completion, triggering a second lambda deleting the uploaded file. 
 
 ## Assignments
 
-1. Green Good Groceries already had some old lambda in place from previously which we are lucky to use. It even have tests, a test bucket and a test file! Navigate to the lambda in the folder `homework-assignment` and run the command `npm run test` to execute the tests. You can also run the lambda itself with the command `sam local invoke S3JsonLoggerFunction --event events/event-s3.json`. Familiarize yourself with the lambda code.
+### Part I
+1. Green Good Groceries already had some old lambda in place from previously which we are lucky to use. It even have tests, a test bucket and a test file! Navigate to the lambda in the folder `homework-assignment` and run the command `npm run test` to execute the tests. You can also run the lambda itself with the command `sam local invoke S3JsonLoggerFunction --event events/event-s3.json`.
 2. Implement the functionality for listing all groceries and fruit categories with the cost of under 10.0$. Also find the maximum and minimum prices of all the valid candidates you just found.
-3. Once done, we need to send this to a webhook of the slack channel `https://hooks.slack.com/services/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`. The webhook is a post endpoint, with the following payload: `{"text":"Hello, World!"}`. We will leave it to you to decide how to perform the http requests (one way is using javascripts `fetch`).
-4. Make your lambda publish a SNS with the topic `INVENTORY_SCAN_COMPLETE`, and the objectID as the message body. You will need to add uncomment the SAM policies inside the `cloudformation.js`.
-5. Create a new lambda which listens to the SNS topic `INVENTORY_SCAN_COMPLETE`. Extract the body, and then make the lambda delete the given file. To test this, feel free to use the event under `week4/materials/assignments/events/custom-delete-event.json` for local development.
+3. Once done, we need to send this to a webhook of the slack channel. You will get the webhook endpoint in slack. We will leave it to you to decide how to perform the http requests (one way is using `fetch`). Here is a curl example of a slack webhook: 
+
+```bash
+curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, World!"}' https://hooks.slack.com/services/{webhook-url}
+```
+
+The text posted in slack should include the following: 
+- your credentials
+- the name of the file scanned
+- the number of candidates you found
+- the min/max prices of the candidates 
+
+4. Deploy your lambda to a new cloudformation stack called `week4-lambda-s3-scanner-${your-credentials}`.
+
+Part II
+5. Make your lambda publish a SNS with the topic `INVENTORY_SCAN_COMPLETE_${your-credentials}` with a message body containing the `objectID`of the event. This object id will be used to delete the file in your SNS lambda. You will need to uncomment the SAM policies inside the `template.yaml` and provide the relevant SNS in the template.
+6. Create a new lambda which listens to the SNS topic `INVENTORY_SCAN_COMPLETE_${your-credentials}`. Extract the `objectID` from the event body, and then make the lambda delete the given file through the S3 client of the AWS SDK. To test this, feel free to use the event under `week4/materials/assignments/events/custom-delete-event.json` for local development.
+7. Deploy your lambda to a new cloudformation stack called `week4-lambda-sns-subscriber-${your-credentials}`.
+8. Write both your cloudformation ARN into the `assignments.md` file. 
+
+Congratulations, the sales department of Good Green Groceries is now content! (for now...)
 
 ## Optional assignments
 
