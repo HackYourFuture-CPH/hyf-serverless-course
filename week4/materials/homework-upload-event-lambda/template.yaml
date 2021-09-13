@@ -1,4 +1,4 @@
-AWSTemplateFormatVersion: '2010-09-09'
+AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 Description: >
   homework-assignment
@@ -7,6 +7,9 @@ Parameters:
   AppBucketName:
     Type: String
     Description: "REQUIRED: Unique S3 bucket name to use for the app."
+  # TopicName:
+  #   Type: String
+  #   Description: "REQUIRED: Topic name that is thrown on lambda completion"
 
 Resources:
   S3JsonLoggerFunction:
@@ -26,8 +29,9 @@ Resources:
             Bucket: !Ref AppBucket
             Events: s3:ObjectCreated:*
       #Policies:
-      #- SNSPublishMessagePolicy:  
-        
+      #  SNSPublishMessagePolicy:
+      #    TopicName: !Ref ExampleTopic
+
   AppBucket:
     Type: AWS::S3::Bucket
     Properties:

@@ -9,7 +9,7 @@ This weeks preperation <br>
 
 So far, we have focused on storage and compute in isolation. This week we combine the two through **events**. Many cloud services, serverless or not, emits unique events that can be listened and reacted upon. We will also go a bit more indepth with cloud infrastructure and security principles.
 
-So far, we have seen the cron event, useful for scheduled jobs. But a lambda can be invoked in many different ways, depending on the use case (see [here](https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html) for more on lambda invocation)
+So far, we have seen the cron event, useful for scheduled jobs. But a lambda can be invoked in many different ways, depending on the use case (see [here](https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html) for more on lambda invocations).
 
 **Examples on events that is serverless could be:**
 
@@ -17,7 +17,7 @@ So far, we have seen the cron event, useful for scheduled jobs. But a lambda can
 - A row is inserted/updated/deleted in a DynamoDB database.
 - A lambda is triggered when something enters SQS (a AWS queue service).
 - A file is uploaded/created/deleted from a bucket
-- A SNS has been published (SNS is an AWS notification service).
+- A SNS notification has been published (SNS is an AWS publish/subscription notification service).
 
 ... and alot more.
 
@@ -45,7 +45,7 @@ Then we can run the lambda with
 
 `sam local invoke --event events/event-s3.json`.
 
-However, you will probably face an `access denied` error. This is because the event is pointing to an example **bucket** and **object** we do not have access to. By inspecting the code:
+However, you will face an `access denied` error. This is because the event is pointing to an example **bucket** and **object** we do not have access to. By inspecting the code:
 
 ```javascript
 exports.s3JsonLoggerHandler = async (event, context) => { // we now have an event payload!
@@ -77,7 +77,7 @@ we see that is taking looking the records, specifically object and name values o
           "arn": "arn:aws:s3:::example-bucket"
         },
         "object": {
-          "key": "test/key", <---- change to own object
+          "key": "test/key", <---- change to own object/filename
           "size": 1024,
           "eTag": "0123456789abcdef0123456789abcdef",
           "sequencer": "0A1B2C3D4E5F678901"
@@ -92,7 +92,7 @@ For a complete list of S3 events see (here)[https://docs.aws.amazon.com/AmazonS3
 
 ### 2. Deploying the lambda
 
-We will deploy this almost the same way as before, except we will need to specifiy a bucket in our deployment step - in this case the bucket to listen to, will be called `hyf-serverless-inventory-lists`.
+We will deploy this almost the same way as before, except we will need to specifiy a bucket in our deployment step - in this case the bucket to listen to, will be your own bucket `hyf-{your-credentials}-week-4-publisher`.
 
 First, we can build with `sam build`. But by looking at the generated `buildspec.yml` we see that sam build is just a shortcut to the command for:
 
@@ -131,9 +131,9 @@ Resources:
 
 Deploying this will create our usual lambda with an event configuration for new objects created. But it will also create a new bucket with the name we provide to it. This illustrates how to create multiple resources as part of our file. Clever! We will go more into depth with this in just a second.
 
-### 3. Simple Notification Service
+### 3. Simple Notification Service (SNS)
 
-Another way to trigger lambdas is to subscribe them to notification. Each time a notification is created, the lambda is invoked. This can be achieved in node with the following code:
+Another way to trigger lambdas is to **subscribe** them to a notification. Each time a notification is **published**, the lambda is invoked. This can be achieved in node with the following code:
 
 ```
 // code example taken from SO: https://stackoverflow.com/questions/31484868/can-you-publish-a-message-to-an-sns-topic-using-an-aws-lambda-function-backed-by
@@ -154,7 +154,7 @@ exports.handler = function(event, context) {
 
 ```
 
-If you look at the Stack overflow post, you will notice the sentence: `You just need to make sure you give the IAM role executing the function access to publish to your topic`. This is a very important aspect of developing cloud infrastructure, where we strive for [Principle pf least privelege ](https://en.wikipedia.org/wiki/Principle_of_least_privilege#:~:text=In%20information%20security%2C%20computer%20science,a%20user%2C%20or%20a%20program%2C).
+If you look at the Stack overflow post, you will notice the sentence: `You just need to make sure you give the IAM role executing the function access to publish to your topic`. This is a very important aspect of developing cloud infrastructure, where we strive for [Principle pf least privelege](https://en.wikipedia.org/wiki/Principle_of_least_privilege#:~:text=In%20information%20security%2C%20computer%20science,a%20user%2C%20or%20a%20program%2C).
 
 In terms of the lambda above, this means two things:
 
@@ -174,15 +174,14 @@ Resources:
       Runtime: nodejs8.10
       CodeUri: 's3://my-bucket/function.zip'
       Policies:
-      # Give DynamoDB Full Access to your Lambda Function
-      - AmazonDynamoDBFullAccess
+        AmazonDynamoDBFullAccess #Give DynamoDB Full Access to your Lambda Function
 ```
 
 See more policy example [here](https://aws.amazon.com/premiumsupport/knowledge-center/lambda-sam-template-permissions/)
 
 ### 4. Class assignments
 
-1. Create a lambda similar to the above and verify it runs, i.e a lambda triggered by S3 input events. Trigger it manually by uploading a file to your S3 bucket.
-2. Create a SNS in the UI. The topic name should be `hyf-{your-credentials}-sns-topic`. Make SNS publishing part of the application code.
-3. Create a new lambda once again, but this time with the SNS template. Then, extend the SNS to contain a string as part of the event body. Make the lambda output this body to the console.
+1. Create a stack with a lambda and bucket similar to the above and verify it runs, i.e trigger the lambda by uploading a file to S3. You can verify it runs by looking at the monitoring tab (although the visuals are usually delayed) or by looking at the cloudwatch logs.
+2. Create a SNS in the UI. The topic name should be `hyf-{your-credentials}-sns-topic`. Make SNS publishing part of your lambdas application code.
+3. Create a new lambda once again, but this time with the SNS template: `6 - Quick Start: SNS`. This new lambda should then be subscribed to your SNS. 
 4. Delete your cloudformation stack.
