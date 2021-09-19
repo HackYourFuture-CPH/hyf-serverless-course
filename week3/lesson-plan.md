@@ -71,7 +71,7 @@ For Cloudwatch this looks like the following.
 
 ```
 const { CloudWatchClient } = require("@aws-sdk/client-cloudwatch");
-const { GetMetricDataCommand } = require("@aws-sdk/client-cloudwatch");
+const { ListMetricsCommand } = require("@aws-sdk/client-cloudwatch");
 
 const cloudwatchClient = new CloudWatchClient({ region: "us-east-1" });
 
