@@ -27,7 +27,7 @@ The text posted in slack should include the following:
 
 4. Deploy your lambda to a new cloudformation stack called `week4-lambda-s3-scanner-${your-credentials}`.
 
-Part II
+## Part II
 5. Make your lambda publish a SNS with the topic `INVENTORY_SCAN_COMPLETE_${your-credentials}` with a message body containing the `objectID`of the event. This object id will be used to delete the file in your SNS lambda. You will need to uncomment the SAM policies inside the `template.yaml` and provide the relevant SNS in the template.
 6. Create a new lambda which listens to the SNS topic `INVENTORY_SCAN_COMPLETE_${your-credentials}`. Extract the `objectID` from the event body, and then make the lambda delete the given file through the S3 client of the AWS SDK. To test this, feel free to use the event under `week4/materials/assignments/events/custom-delete-event.json` for local development.
 7. Deploy your lambda to a new cloudformation stack called `week4-lambda-sns-subscriber-${your-credentials}`.
