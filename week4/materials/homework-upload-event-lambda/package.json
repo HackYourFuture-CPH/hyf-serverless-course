@@ -11,6 +11,6 @@
     "aws-sdk-mock": "^5.1.0"
   },
   "scripts": {
-    "test": "jest --watch"
+    "test": "jest"
   }
 }
