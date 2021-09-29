@@ -13,9 +13,9 @@ So far, we have ventured into the the serverless landscape of **compute** and **
 
 Databases is a vast field, solves many use cases, and can solved with **serverful** and **serverless** databases. Cloud providers has services for partial and full serverless databases. These services carry the serverless principles (e.g scalability, cost and low maintanence).
 
-The important thing to note is that there is [no free lunch](https://en.wikipedia.org/wiki/There_ain%27t_no_such_thing_as_a_free_lunch) - i.e every choice toward serverless will remove the benefits of serverful databases. So be careful when choosing database for architecture, since there are alot of good choices out there. Pro top: always discuss and research this with your colleagues and align with your stakeholders.
+The important thing to note is that there is [no free lunch](https://en.wikipedia.org/wiki/There_ain%27t_no_such_thing_as_a_free_lunch) - i.e every choice toward serverless will remove the benefits of serverful databases. So be careful when choosing databases, since there are alot of good choices out there. Pro tip: always discuss and research this with your colleagues and align with your stakeholders.
 
-With that said, we will venture into where serverless databases are very popular: NoSql databases and unstructured data. In AWS, this service is called DynamoDB.
+With that said, we will venture into where serverless databases are very popular: NoSql databases. In AWS, this service is called DynamoDB.
 
 ## DynamoDB
 
@@ -77,3 +77,4 @@ API Gateway handles all the tasks involved in accepting and processing up to hun
 ```
 
 ### 6. Class Assignments
+- There is no class assignments, go straight to the homework!
