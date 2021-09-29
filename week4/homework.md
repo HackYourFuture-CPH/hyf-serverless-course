@@ -11,7 +11,7 @@ In the end, you will have two lambdas. A lambda triggered by a file upload which
 ## Assignments
 
 ### Part I
-1. Green Good Groceries already had some old lambda in place from previously which we are lucky to use. It even have tests, a test bucket and a test file! Navigate to the lambda in the folder `homework-assignment` and run the command `npm run test` to execute the tests. You can also run the lambda itself with the command `sam local invoke S3JsonLoggerFunction --event events/event-s3.json`.
+1. Green Good Groceries already had some old lambda in place from previously which we are lucky to use. It even have tests, a test bucket and a test file! Navigate to the lambda in the folder `homework-assignment` and run the command `npm run test` or `npm run test --watch` to execute the tests. You can also run the lambda itself with the command `sam local invoke S3JsonLoggerFunction --event events/event-s3.json`.
 2. Implement the functionality for listing all groceries and fruit categories with the cost of under 10.0$. Also find the maximum and minimum prices of all the valid candidates you just found.
 3. Once done, we need to send this to a webhook of the slack channel. You will get the webhook endpoint in slack. We will leave it to you to decide how to perform the http requests (one way is using `fetch`). Here is a curl example of a slack webhook: 
 
