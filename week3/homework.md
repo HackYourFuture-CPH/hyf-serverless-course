@@ -55,17 +55,9 @@ Next, uncomment all the code related to the cloudwatch client inside the lambda.
 
 3. We will now need to change the relevant parameters for the cloudwatch call. Figure out which values is correct for retrieving the count you found in Part I (docs can be found [here](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-metrics-and-dimensions.html)).
 
-4. The sales department of Good Green Groceries wants even more metrics! Enhance your lambda to return all metrics with the `ListMetricsCommand` for our API Gateway (see examples [here](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/cloudwatch-examples-getting-metrics.html)). Make the lambda only output all avaliable names of the metrics in the following structure:
+4. The sales department of Good Green Groceries wants even more metrics! Enhance your lambda to return the result from the `ListMetricsCommand` for our API Gateway (see examples [here](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/cloudwatch-examples-getting-metrics.html)). Return the `ListMetricsCommand`results at the end of the function. 
 
-```
-{
-   "command": "API_ANALYZER",
-   "values": ["Latency", "4XX", ...],
-   "date": "2021-20-01
-}
-```
-
-5. We now need to deploy, validate and trigger our lambda. To deploy we can use the `sam deploy --guided` command. Theese arguments will need to be as follows (feel free to choose the others yourself):
+6. We now need to deploy, validate and trigger our lambda. To deploy we can use the `sam deploy --guided` command. Theese arguments will need to be as follows (feel free to choose the others yourself):
 
    1. Type 'hyf'-{your-credentials}-homework-cron-lambda' as the stack name, e.g `hyf-pds-cron-homework-lambda`.
    2. Choose default region (us-east-1)
