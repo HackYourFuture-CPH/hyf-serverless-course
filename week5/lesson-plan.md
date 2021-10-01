@@ -76,5 +76,80 @@ Amazon API Gateway is a fully managed service that makes it easy for developers 
 API Gateway handles all the tasks involved in accepting and processing up to hundreds of thousands of concurrent API calls, including traffic management, CORS support, authorization and access control, throttling, monitoring, and API version management. API Gateway has no minimum fees or startup costs. You pay for the API calls you receive and the amount of data transferred out and, with the API Gateway tiered pricing model, you can reduce your cost as your API usage scales.
 ```
 
+SAM has a quickstart template for API Gateways called `8 - Quick Start: Web Backend`. 
+
+```
+Resources:
+  getAllItemsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/get-all-items.getAllItemsHandler
+      ... other properties ...
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /
+            Method: GET
+```
+
+By looking at this, we see that the event type has been changed to an API event, which has a `path` and `method`. This specific route is then mapped to the handler `src/handlers/get-all-items.getAllItemsHandler` with the somewhat following code: 
+
+```javascript
+exports.getAllItemsHandler = async (event) => {
+    if (event.httpMethod !== 'GET') {
+        throw new Error(`getAllItems only accept GET method, you tried: ${event.httpMethod}`);
+    }
+    // All log statements are written to CloudWatch
+    console.info('received:', event);
+
+    var params = {
+        TableName : tableName
+    };
+    const data = await docClient.scan(params).promise();
+    const items = data.Items;
+
+    const response = {
+        statusCode: 200,
+        body: JSON.stringify(items)
+    };
+
+    // All log statements are written to CloudWatch
+    console.info(`response from: ${event.path} statusCode: ${response.statusCode} body: ${response.body}`);
+    return response;
+}
+```
+
+There are a couple of ways to add additional routes to an API Gateway. One way, as is the way in the SAM starter example, is to add additional functions in the cloudformation template, and then add additional handlers. 
+
+This will then create a function for every route. Also, note that multiple API events can get mapped to the same function, i.e
+
+```
+Resources:
+  getAllItemsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/get-all-items.getAllItemsHandler
+      ... other properties ...
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /
+            Method: GET
+        Api:
+          Type: Api
+          Properties:
+            Path: /items
+            Method: GET
+        ...
+```
+
+### Development
+In order to develop API's with sam, we need to start up a server locally and then execute API requests towards it. 
+
+Luckily, sam allows us to do this with the command `sam local start-api` (docs can be found ([here](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-local-start-api.html))
+
+
 ### 6. Class Assignments
 - There is no class assignments, go straight to the homework!

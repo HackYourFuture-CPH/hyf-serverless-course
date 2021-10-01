@@ -28,3 +28,6 @@ POST /subscription
 Implement functionality for inserting. The items should contain at least the following keys `productID`, `email`, `createdOn`. 4. Deploy your API with SAM under a new cloudformation stack called: `hyf-{your-credentials}-week5-api`.
 
 ## Part II: Integrating it into the webapp
+The next part will only include one assignment: to integrate the API into your own good-gree-groceries website. 
+
+4. Implement the API into your website and redeploy the website. Write down your website url into `assignments.md`.
