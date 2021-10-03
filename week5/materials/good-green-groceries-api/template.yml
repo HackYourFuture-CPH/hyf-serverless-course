@@ -1,11 +1,10 @@
 AWSTemplateFormatVersion: 2010-09-09
 
 Transform: AWS::Serverless-2016-10-31
-
 Parameters:
-  SubscriptionsTable: 
+  SubscriptionsTableName: 
     Type: String
-
+    
 Resources:
   getAllItemsFunction:
     Type: AWS::Serverless::Function
@@ -27,6 +26,15 @@ Resources:
           Properties:
             Path: /subscriptions
             Method: GET
+            
+  SubscriptionsTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      TableName: !Ref SubscriptionsTableName
+      PrimaryKey:
+        Name: id
+        Type: String
+        
 Outputs:
   WebEndpoint:
     Description: "API Gateway endpoint URL for Prod stage"
