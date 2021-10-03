@@ -3,7 +3,7 @@ AWSTemplateFormatVersion: 2010-09-09
 Transform: AWS::Serverless-2016-10-31
 
 Parameters:
-  ProductsTable: 
+  SubscriptionsTable: 
     Type: String
 
 Resources:
@@ -17,15 +17,15 @@ Resources:
       Description: A simple example includes a HTTP get method to get all items from a DynamoDB table.
       Policies:
         - DynamoDBCrudPolicy:
-            TableName: !Ref ProductsTable
+            TableName: !Ref SubscriptionsTable
       Environment:
         Variables:
-          PRODUCTS_TABLE: !Ref ProductsTable
+          SUBSCRIPTIONS_TABLE: !Ref SubscriptionsTable
       Events:
         Api:
           Type: Api
           Properties:
-            Path: /
+            Path: /subscriptions
             Method: GET
 Outputs:
   WebEndpoint:
