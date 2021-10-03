@@ -11,7 +11,7 @@ The API will only have two functionalities:
 
 ## Part I: DynamoDB and API Gateway
 
-1. We already have a minor API deployed, but it is just a placeholder. First off, create two new routes in your template. The first should be a `GET /products`, and the second a `POST /subscription`. Start of by implementing `GET /products`, fetching all items from the DyanmoDB table: `good-green-groceries-products`.
+1. We already have a minor API deployed, but it is just a placeholder. First off, create two new routes in your template. The first should be a `GET /subscriptions`, and the second a `POST /subscription`. Start of by implementing `GET /subscriptions`, fetching all items from the DyanmoDB table: `good-green-groceries-products`.
 
 2. Create a DynamoDB table with your credentials, e.g `hyf-{your-credentials}-subscriptions`. Partition key should be `Id`
 3. Creating subscriptions has the following signature:
